@@ -168,7 +168,6 @@ ApplicantType_id int not null,
 ProfessionalQualifications_id int not null,
 UserCollege_id int not null,
 WalkIn_has_TimeSlot_id int not null,
-WalkIn_has_JobRoles_id int not null,
 primary key (id),
 foreign key (Qualification_id) References Qualification (id),
 foreign key (Stream_id) References Stream (id),
@@ -176,8 +175,7 @@ foreign key (ApplicantType_id) References ApplicantType (id),
 foreign key (EducationalQualifications_id) References EducationalQualifications (id),
 foreign key (ProfessionalQualifications_id) References ProfessionalQualifications (id),
 foreign key (UserCollege_id) References UserCollege (id),
-foreign key (WalkIn_has_TimeSlot_id) references WalkIn_has_TimeSlot (id),
-foreign key (WalkIn_has_JobRoles_id) references WalkIn_has_JobRoles (id)
+foreign key (WalkIn_has_TimeSlot_id) references WalkIn_has_TimeSlot (id)
 );
 select * from User;
 
@@ -206,3 +204,11 @@ foreign key (User_id) References User (id),
 foreign key (Technologies_id) References Technologies (id)
 );
 select * from FamiliarTechnologies;
+
+create table if not exists ApplyJobRoles (
+User_id int not null,
+WalkIn_has_JobRoles_id int not null,
+foreign key (User_id) References User (id),
+foreign key (WalkIn_has_JobRoles_id) references WalkIn_has_JobRoles (id)
+);
+select * from ApplyJobRoles;
